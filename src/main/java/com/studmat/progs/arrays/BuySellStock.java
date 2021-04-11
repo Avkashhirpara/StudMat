@@ -1,4 +1,4 @@
-package com.studmat.progs;
+package com.studmat.progs.arrays;
 
 public class BuySellStock {
 

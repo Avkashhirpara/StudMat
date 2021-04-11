@@ -1,9 +1,4 @@
-package com.studmat.progs;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.studmat.progs.arrays;
 
 public class PrintLn {
     public void test(char[] chars){
