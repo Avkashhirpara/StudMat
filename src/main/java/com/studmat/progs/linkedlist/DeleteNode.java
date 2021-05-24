@@ -1,9 +1,9 @@
 package com.studmat.progs.linkedlist;
 
-class ListNode {
+class ListNode1 {
     int val;
     ListNode next;
-    ListNode(int x) {
+    ListNode1(int x) {
         val = x;
     }
 }
