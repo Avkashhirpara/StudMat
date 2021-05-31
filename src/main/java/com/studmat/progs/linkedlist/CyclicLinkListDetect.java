@@ -6,7 +6,6 @@ public class CyclicLinkListDetect {
         if (head == null) {
             return false;
         }
-
         ListNode slow = head;
         ListNode fast = head.next;
         while (slow != fast) {
@@ -23,6 +22,7 @@ public class CyclicLinkListDetect {
         head.next = new ListNode(5);
         head.next.next = new ListNode(1);
         head.next.next.next = new ListNode(9);
+        head.next.next.next.next = new ListNode(10);
         //head.next.next.next = head.next;
         System.out.println(new CyclicLinkListDetect().hasCycle(head));
     }

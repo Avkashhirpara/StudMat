@@ -6,47 +6,40 @@ import java.util.List;
 public class CountAndSay {
 
     public String countAndSay(int n) {
-
-        LinkedList<Integer> prevSeq = new LinkedList<Integer>();
-        prevSeq.add(1);
-        // Using -1 as the delimiter
-        prevSeq.add(-1);
-
-        List<Integer> finalSeq = this.nextSequence(n, prevSeq);
-        StringBuffer seqStr = new StringBuffer();
-        for (Integer digit : finalSeq) {
-            seqStr.append(String.valueOf(digit));
+        String str = "21";
+        int counter = 1;
+        StringBuffer nextStr = new StringBuffer();
+        if (n == 1) {
+            return "1";
         }
-        return seqStr.toString();
-    }
-
-    protected LinkedList<Integer> nextSequence(int n, LinkedList<Integer> prevSeq) {
-        if (n <= 1) {
-            // remove the delimiter before return
-            prevSeq.pollLast();
-            return prevSeq;
+        if (n == 2) {
+            return "11";
         }
-
-        LinkedList<Integer> nextSeq = new LinkedList<Integer>();
-        Integer prevDigit = null;
-        Integer digitCnt = 0;
-        for (Integer digit : prevSeq) {
-            if (prevDigit == null) {
-                prevDigit = digit;
-                digitCnt += 1;
-            } else if (digit == prevDigit) {
-                // in the middle of the sub-sequence
-                digitCnt += 1;
-            } else {
-                // end of a sub-sequence
-                nextSeq.add(digitCnt);
-                nextSeq.add(prevDigit);
-                // reset for the next sub-sequence
-                prevDigit = digit;
-                digitCnt = 1;
+        if (n == 3) {
+            return "21";
+        }
+        while (n > 3){
+            int i = 0;
+            for (; i < str.length()-1; i++) {
+                if(str.charAt(i) == str.charAt(i+1)){
+                    counter++;
+                }else{
+                    nextStr.append(counter).append(str.charAt(i));
+                    counter = 1;
+                }
             }
+            nextStr.append(counter).append(str.charAt(i));
+            str = nextStr.toString();
+            nextStr.delete(0, nextStr.length());
+            counter = 1;
+            n--;
         }
-        nextSeq.add(-1);
-        return this.nextSequence(n - 1, nextSeq);
+        return str;
     }
+
+    public static void main(String[] args) {
+        System.out.println(new CountAndSay().countAndSay(11));
+    }
+
+
 }
