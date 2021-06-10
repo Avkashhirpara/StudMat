@@ -1,6 +1,8 @@
 package com.studmat.progs.trees;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TreeNode {
@@ -18,6 +20,8 @@ public class TreeNode {
         int newlevel = 3;
         Map<Integer,String> map = new HashMap<Integer,String>();
         public void print(){
+            
+
             map.put(1,this.val+"");
             String str = "";
             if(this.left != null){
