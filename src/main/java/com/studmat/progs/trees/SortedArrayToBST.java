@@ -1,28 +1,39 @@
 package com.studmat.progs.trees;
 
+import sun.reflect.generics.tree.Tree;
+
 public class SortedArrayToBST {
     public TreeNode sortedArrayToBST(int[] nums) {
-        int mIndex = nums.length/2;
-        TreeNode root = new TreeNode(nums[mIndex]);
-        TreeNode dummy = new TreeNode(0);
-        dummy.left = root;
-        for (int i = mIndex+1; i < nums.length; i++) {
-                root.right= new TreeNode(nums[i]);
-                root = root.right;
+        if (nums.length == 0) {
+            return new TreeNode();
         }
-        root= dummy.left;
-        for (int i = mIndex-1; i >= 0; i--) {
-            root.left= new TreeNode(nums[i]);
-            root = root.left;
-        }
+        TreeNode root = new TreeNode();
+        int begin = 0;
+        int end = nums.length - 1;
+        int mid = (begin + end) / 2;
 
-        return dummy.left;
+        root.val = nums[mid];
+        root.left = sortArray(nums, begin, mid - 1);
+        root.right = sortArray(nums, mid + 1, end);
+        return root;
+    }
+
+    private TreeNode sortArray( int[] nums, int begin, int end) {
+        if (begin > end) {
+            return null;
+        }
+        int mid = (begin + end) / 2;
+        TreeNode  root = new TreeNode(nums[mid]);
+        root.left = sortArray(nums, begin, mid - 1);
+        root.right = sortArray( nums, mid + 1, end);
+        return root;
     }
 
     public static void main(String[] args) {
-        int[] nums  = new int[]{};
-        TreeNode root =new SortedArrayToBST().sortedArrayToBST(nums);
-                root.print();
+        int[] nums = new int[]{0,1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = new SortedArrayToBST().sortedArrayToBST(nums);
+        root.print();
+        // System.out.println(2/2);
     }
 
 }
